@@ -1,4 +1,4 @@
-// Form validation and email sending
+// Form validation 
 document.getElementById('contactform').addEventListener('submit', function (event) {
     event.preventDefault(); // Prevent default form submission
 
@@ -20,6 +20,9 @@ document.getElementById('contactform').addEventListener('submit', function (even
     if (name === '') {
       document.getElementById('nameError').textContent = 'Name is required.';
       Valid = false;
+    }else if(/\d/.test(name)){
+      document.getElementById('nameError').textContent = 'Name is should not contain numbers.';
+      Valid=false;
     }
 
     // Validate Email
@@ -58,9 +61,5 @@ document.getElementById('contactform').addEventListener('submit', function (even
           alert("Your Response is Noted! We will be contacting you soon");
           document.getElementById('contactform').reset(); // Clear the form
         })
-        .catch((error) => {
-          alert("Failed to send email. Please try again.");
-          console.error("EmailJS Error:", error);
-        });
-    }
+       }
   });
